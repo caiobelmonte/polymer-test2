@@ -1,0 +1,39 @@
+
+<!doctype html>
+<html>
+<head>
+  <title>Leitor de Notícias</title>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#E3A002">﻿
+  
+  <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+  <link rel="import" href="bower_components/polymer/polymer.html">
+
+  <link rel="import" href="elements/core-rss-reader.html">
+  
+  <style>
+
+  body {
+    font-family: sans-serif;
+  }
+  </style>
+  
+</head>
+
+<body unresolved>
+
+<core-rss-reader></core-rss-reader>
+
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript">
+    app.initialize();
+</script>  
+</body>
+
+
+</html>

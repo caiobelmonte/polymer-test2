@@ -1,0 +1,135 @@
+<link rel="import" href="../bower_components/core-scaffold/core-scaffold.html">
+<link rel="import" href="../bower_components/core-header-panel/core-header-panel.html">
+<link rel="import" href="../bower_components/core-menu/core-menu.html">
+<link rel="import" href="../bower_components/core-item/core-item.html">
+<link rel="import" href="../bower_components/core-animated-pages/core-animated-pages.html">
+<link rel="import" href="posts-rss.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
+
+<polymer-element name="core-rss-reader" fit>
+  <template>
+    <style>
+    body, html {
+      height: 100%;
+    }
+
+    #navheader {
+      background-color: #56BA89;
+    }
+    .content {
+      padding: 20px;
+    }
+    /* [END styles] */
+    /* secret demo-only styles */
+    core-scaffold /deep/ #drawer {
+      width: 140px;
+    }
+    core-scaffold /deep/ #main {
+      left: 140px;
+    }
+
+    #add-icon {
+      position: fixed;
+      bottom: 0.2%;
+      right: 5%;
+    }
+
+    #content-main {
+      right: 0;
+      padding-top: 20px;
+    }
+
+    paper-fab {
+      color: #fff;
+    }
+
+    paper-fab.blue {
+      background: #5677fc;
+    }
+
+    paper-fab.green {
+      background: #259b24;
+    }
+
+    paper-fab.yellow {
+      background: #ffeb3b;
+    }
+    
+    paper-fab.orange {
+      background: #FFB300;
+    }
+
+    #header-uppercase {
+      text-transform: uppercase;
+    }
+
+  core-scaffold::shadow core-toolbar {
+    background: #E3A002;
+    color: #E8E8E8;
+  }
+
+  core-scaffold::shadow [main] {
+    background-color: #fff;
+  }
+
+  #core_animated_pages {
+    width: 100%;
+    height: 83vh;
+    min-height: 20vh;
+    max-height: 83vh
+  }
+
+  #page1 {
+    width: 100%;
+    height: 400px;
+    float: left; 
+    background-color: #fff;
+  }
+
+    </style>
+
+    <core-scaffold id="scaffold">    
+      <core-header-panel navigation flex mode="seamed">
+        <core-toolbar style="background-color: #E3A002; color: #E8E8E8;">BLOGS</core-toolbar>
+        <core-menu selected="0">
+          <core-item icon="language" label="Tecnoblog" on-tap="{{mostrar_tecnoblog}}"></core-item>
+          <core-item icon="language" label="Tecmundo" on-tap="{{mostrar_tecmundo}}"></core-item>
+        </core-menu>
+        <div id="add-icon">
+          <paper-fab icon="add" class="orange"></paper-fab>
+        </div>
+      </core-header-panel>
+      
+      <div tool id="header-uppercase">{{titulo}}</div>
+      
+      <div class="content">
+        <core-animated-pages id="core_animated_pages" selected="{{page_selected}}" transition="fade-scale">
+          <selection>
+            <posts-rss rss_url="http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=100&q=http://feeds.feedburner.com/tecnoblog&callback=%%callback%%"></posts-rss>
+          </selection>
+          <selection>
+            <posts-rss rss_url="http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=100&q=http://www.baixaki.com.br/rss/tecnologia.xml&callback=%%callback%%"></posts-rss>
+          </selection>
+        </core-animated-pages>
+      </div>
+    
+    </core-scaffold>
+  </template>
+
+  <script>
+  Polymer('core-rss-reader', {
+    page_selected: "0",
+    titulo: "Tecnoblog",
+    mostrar_tecnoblog: function(){
+      this.titulo = "Tecnoblog";
+      this.page_selected = "0";
+      this.$.scaffold.closeDrawer();
+    },
+    mostrar_tecmundo: function(){
+      this.titulo = "Tecmundo";
+      this.page_selected = "1";
+      this.$.scaffold.closeDrawer();
+    }
+  });
+  </script>
+</polymer-element>

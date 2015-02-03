@@ -1,0 +1,41 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/core-shared-lib/core-shared-lib.html">
+<link rel="import" href="../bower_components/core-list/core-list.html">
+
+<polymer-element name="posts-rss" attributes="rss_url">
+  <template>
+    <style>
+    body, html {
+      height: 100%;
+    }
+      #page1 {
+        width: 100%;
+        height: 100%;
+        float: left;
+        background-color: rgb(238, 238, 238);
+
+      }
+
+    </style>
+      <core-shared-lib on-core-shared-lib-load="{{resp}}" url="{{rss_url}}">
+      </core-shared-lib>
+
+      <core-list data="{{posts}}" id="page1">
+        <template>
+          <div>
+            <a href="{{model.link}}" style="color:#333; text-decoration: none;">
+              <h3 style="margin-left:20px; margin-right:20px">{{model.title}}</h3>
+            </a>
+          </div>
+        </template>
+      </core-list>
+
+    </template>
+    <script>
+    Polymer({
+      resp: function(response) {
+        this.posts = response["detail"][1][0]["responseData"]["feed"]["entries"];
+      },
+    });
+    </script>
+  </polymer-element>

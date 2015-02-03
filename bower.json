@@ -1,0 +1,26 @@
+{
+  "name": "polymer",
+  "version": "0.0.0",
+  "authors": [
+    "Caio Belmonte <caiobelmonte@gmail.com>"
+  ],
+  "description": "Testes com Polymer",
+  "keywords": [
+    "polymer"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "core-animated-pages": "polymer/core-animated-pages#~0.5.4",
+    "paper-elements": "Polymer/paper-elements#~0.5.4"
+  },
+  "moduleType": [
+    "amd"
+  ]
+}
